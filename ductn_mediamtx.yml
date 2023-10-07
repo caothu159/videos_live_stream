@@ -1,0 +1,24 @@
+########## DUCTN Media server ##########
+# Ductn media server
+rtspAddress: :554
+paths:
+  unicast/c1/s0/live:
+    # This is terminated with SIGINT when the program closes.
+    # The following environment variables are available:
+    # * MTX_PATH: path name
+    # * RTSP_PORT: RTSP server port
+    # * G1, G2, ...: regular expression groups, if path name is
+    #   a regular expression.
+    # runOnInit:
+    # Restart the command if it exits.
+    # runOnInitRestart: no
+
+    # runOnInit: /var/www/videos/ductn_rtsp.sh
+    # runOnInitRestart: no
+
+    runOnDemand: /var/www/videos/ductn_rtsp.sh loop $MTX_PATH main
+    runOnDemandRestart: no
+  unicast/c1/s1/live:
+    runOnDemand: /var/www/videos/ductn_rtsp.sh loop $MTX_PATH sub
+    runOnDemandRestart: no
+########## DUCTN Media server ##########
